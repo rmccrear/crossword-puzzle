@@ -1,0 +1,11 @@
+{
+  "name": "crossword-puzzle",
+  "version": "1.0.0",
+  "description": "A game in HTML and CSS to let you create crossword puzzles for your class.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
