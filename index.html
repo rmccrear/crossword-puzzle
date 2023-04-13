@@ -5,6 +5,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    .letter-box {
+      width: 3em; 
+      height: 3em;
+      border: solid black 1px;
+      display: inline-block;
+    }
+    .letter-box-empty {
+      background-color: black;
+    }
+    .letter-box > input {
+      width: 2em;
+      height: 2em;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -16,8 +34,18 @@
       Enter in the answers and hints into the box, then the crossword puzzle will be created.
     </p>
     <textarea title="crossword answer an hints input"></textarea>
+    <div id="board"></div>
   </div>
   <footer>
   </footer>
+  <script src="./render.js"></script>
+  <script src="./vendor/crossword-layout-generator.js"></script>
+  <script>
+    const crosswordData = generateLayout([{clue: "a kind of dog", answer:"hound"}, {"clue": "a kind of sea animal", answer: "octopus"}]);
+    console.log(crosswordData);
+    const boardData = renderBoard(crosswordData);
+    console.log(boardData);
+    document.getElementById("board").innerHTML = boardData;
+  </script>
 </body>
 </html>
