@@ -9,6 +9,9 @@
     * {
       box-sizing: border-box;
     }
+    #board {
+      display: grid;
+    }
     .letter-box {
       width: 3em; 
       height: 3em;
@@ -23,6 +26,10 @@
       height: 2em;
     }
   </style>
+  <script>
+    const globalBoxWidth = "3em";
+    const globalBoxHeight= "3em";
+  </script>
 </head>
 <body>
   <header>
@@ -45,6 +52,10 @@
     console.log(crosswordData);
     const boardData = renderBoard(crosswordData);
     console.log(boardData);
+    document.getElementById("board").style.backgroundColor = "slateGrey";
+    document.getElementById("board").style.width = `calc(${globalBoxWidth}*${crosswordData.cols} + 1em)`
+    document.getElementById("board").style.gridTemplateColumns = `repeat(${crosswordData.cols}, ${globalBoxWidth})`;
+    document.getElementById("board").style.gridTemplateRows = `repeat(${crosswordData.rows}, ${globalBoxHeight})`;
     document.getElementById("board").innerHTML = boardData;
   </script>
 </body>
