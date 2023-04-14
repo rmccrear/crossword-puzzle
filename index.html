@@ -16,7 +16,7 @@
       width: 3em; 
       height: 3em;
       border: solid black 1px;
-      display: inline-block;
+      display: flex;
     }
     .letter-box-empty {
       background-color: black;
@@ -24,6 +24,9 @@
     .letter-box > input {
       width: 2em;
       height: 2em;
+    }
+    input:valid {
+      color: green;
     }
   </style>
   <script>
@@ -48,7 +51,7 @@
   <script src="./render.js"></script>
   <script src="./vendor/crossword-layout-generator.js"></script>
   <script>
-    const crosswordData = generateLayout([{clue: "a kind of dog", answer:"hound"}, {"clue": "a kind of sea animal", answer: "octopus"}]);
+    const crosswordData = generateLayout([{clue: "a kind of dog", answer:"hound"}, {"clue": "a kind of sea animal", answer: "octopus"}, {clue: "night bird", answer: "owl"}, {clue: "not off", answer: "on"}]);
     console.log(crosswordData);
     const boardData = renderBoard(crosswordData);
     console.log(boardData);
