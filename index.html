@@ -17,16 +17,26 @@
       height: 3em;
       border: solid black 1px;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .letter-box-empty {
       background-color: black;
     }
     .letter-box > input {
-      width: 2em;
-      height: 2em;
+      width: 2.5em;
+      height: 2.5em;
+      background-color: slategray;
+      border: none;
     }
     input:valid {
       color: green;
+    }
+    .letter-box-start-number {
+      display: flex;
+      flex-direction: column; 
+      justify-content: first;
+      height: 3em; /* same size as box */
     }
   </style>
   <script>

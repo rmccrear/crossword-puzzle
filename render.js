@@ -2,7 +2,8 @@
 function renderLetterBoxInput({correctAns, idx}) {
   // double check sanity
   if(correctAns.length==1 && correctAns.match(/[a-zA-Z]/)){
-    return `<input type="text" data-idx=${idx} pattern="${correctAns}" data-correct-answer="${correctAns}" class="letter-box-input"/>`;
+    const pattern = `[${correctAns.toLowerCase()}${correctAns.toUpperCase()}]`; // accept upper OR lower case ex: [aA], [bB], etc...
+    return `<input type="text" data-idx=${idx} pattern="${pattern}" data-correct-answer="${correctAns}" class="letter-box-input"/>`;
   } else {
     console.log("error rendering input form with correctAns" + correctAns);
     return `<input type="text" class="letter-box-input letter-box-input-error" />`;
@@ -14,9 +15,9 @@ function renderLetterBox({correctAns, isEmpty, idx, startNumber}) {
     return `<div class="letter-box letter-box-empty"></div>`
   } else {
     const input = renderLetterBoxInput({correctAns, idx});
-    let startNumberDiv = '';
+    let startNumberDiv = '<div>&nbsp;</div>';
     if(startNumber) {
-      startNumberDiv = `<div class="letter-box-start-number">${startNumber}</div>`;
+      startNumberDiv = `<div class="letter-box-start-number"><div>${startNumber}</div></div>`;
     }
     return `
       <div class="letter-box">${startNumberDiv}${input}</div>
