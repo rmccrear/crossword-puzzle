@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Name Game</title>
   <style>
     * {
       box-sizing: border-box;
@@ -59,23 +59,36 @@
       This is a game that will let you create a crossword puzzle.
       Enter in the answers and hints into the box, then the crossword puzzle will be created.
     </p>
-    <textarea title="crossword answer an hints input"></textarea>
+    <textarea id="create-crossword-textarea" title="crossword answer and hints input"></textarea>
+    <button id="create-button">create crossword</button>
     <div id="board"></div>
   </div>
   <footer>
   </footer>
   <script src="./render.js"></script>
+  <script src="./text-convert.js"></script>
   <script src="./vendor/crossword-layout-generator.js"></script>
   <script>
     const crosswordData = generateLayout([{clue: "a kind of dog", answer:"hound"}, {"clue": "a kind of sea animal", answer: "octopus"}, {clue: "night bird", answer: "owl"}, {clue: "not off", answer: "on"}]);
     console.log(crosswordData);
-    const boardData = renderBoard(crosswordData);
-    console.log(boardData);
-    document.getElementById("board").style.backgroundColor = "slateGrey";
-    document.getElementById("board").style.width = `calc(${globalBoxWidth}*${crosswordData.cols} + 1em)`
-    document.getElementById("board").style.gridTemplateColumns = `repeat(${crosswordData.cols}, ${globalBoxWidth})`;
-    document.getElementById("board").style.gridTemplateRows = `repeat(${crosswordData.rows}, ${globalBoxHeight})`;
-    document.getElementById("board").innerHTML = boardData;
+    function setupBoard(crosswordData){
+      const boardData = renderBoard(crosswordData);
+      console.log(boardData);
+      document.getElementById("board").style.backgroundColor = "slateGrey";
+      document.getElementById("board").style.width = `calc(${globalBoxWidth}*${crosswordData.cols} + 1em)`
+      document.getElementById("board").style.gridTemplateColumns = `repeat(${crosswordData.cols}, ${globalBoxWidth})`;
+      document.getElementById("board").style.gridTemplateRows = `repeat(${crosswordData.rows}, ${globalBoxHeight})`;
+      document.getElementById("board").innerHTML = boardData;
+    }
+    setupBoard(crosswordData);
+    document.getElementById("create-button").addEventListener("click", function(e) {
+      e.preventDefault();
+      const csv = document.getElementById("create-crossword-textarea").value;
+      console.log(csv);
+      const crosswordItems = crosswordItemsFromCSV(csv);
+      const crosswordData = generateLayout(crosswordItems);
+      setupBoard(crosswordData);
+    });
   </script>
 </body>
 </html>
