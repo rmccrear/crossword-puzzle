@@ -26,7 +26,7 @@
     .letter-box > input {
       width: 2.5em;
       height: 2.5em;
-      background-color: slategray;
+      background-color: white;
       border: none;
     }
     input:valid {
@@ -43,6 +43,23 @@
     .letter-box-start-number > div {
       padding-top: 3px;
       padding-left: 3px;
+    }
+    #game-layout {
+      display: flex;
+    }
+    #sidebar {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2em;
+      border: solid;
+    }
+    #sidebar div:first-child {
+      border-bottom: solid;
+    }
+    #sidebar li {
+      list-style: none;
+      margin-bottom: .5em;;
     }
   </style>
   <script>
@@ -61,15 +78,17 @@
     </p>
     <textarea id="create-crossword-textarea" title="crossword answer and hints input"></textarea>
     <button id="create-button">create crossword</button>
-    <div id="board"></div>
-    <div id="sidebar">
-      <div>
-        <h3>Across</h3>
-        <ul id="across-hints"></ul>
-      </div>
-      <div>
-        <h3>Down</h3>
-        <ul id="down-hints"></ul>
+    <div id="game-layout">
+      <div id="board"></div>
+      <div id="sidebar">
+        <div>
+          <h3>Across</h3>
+          <ul id="across-hints"></ul>
+        </div>
+        <div>
+          <h3>Down</h3>
+          <ul id="down-hints"></ul>
+        </div>
       </div>
     </div>
   </div>
@@ -102,7 +121,7 @@
     function setupBoard(crosswordData){
       const boardData = renderBoard(crosswordData);
       console.log(boardData);
-      document.getElementById("board").style.backgroundColor = "slateGrey";
+      document.getElementById("board").style.backgroundColor = "white";
       document.getElementById("board").style.width = `calc(${globalBoxWidth}*${crosswordData.cols} + 1em)`
       document.getElementById("board").style.gridTemplateColumns = `repeat(${crosswordData.cols}, ${globalBoxWidth})`;
       document.getElementById("board").style.gridTemplateRows = `repeat(${crosswordData.rows}, ${globalBoxHeight})`;
