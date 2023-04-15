@@ -57,3 +57,11 @@ function generateHashTableForStartPositions(crosswordResult) {
   }
   return hashTable;
 }
+
+function renderHintListItems(hints) {
+  const elms = [];
+  for(hint of hints) {
+    elms.push(`<li>${hint.position}. ${hint.clue}</li>`)
+  }
+  return elms;
+}

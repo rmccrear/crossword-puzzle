@@ -62,6 +62,16 @@
     <textarea id="create-crossword-textarea" title="crossword answer and hints input"></textarea>
     <button id="create-button">create crossword</button>
     <div id="board"></div>
+    <div id="sidebar">
+      <div>
+        <h3>Across</h3>
+        <ul id="across-hints"></ul>
+      </div>
+      <div>
+        <h3>Down</h3>
+        <ul id="down-hints"></ul>
+      </div>
+    </div>
   </div>
   <footer>
   </footer>
@@ -71,6 +81,24 @@
   <script>
     const crosswordData = generateLayout([{clue: "a kind of dog", answer:"hound"}, {"clue": "a kind of sea animal", answer: "octopus"}, {clue: "night bird", answer: "owl"}, {clue: "not off", answer: "on"}]);
     console.log(crosswordData);
+    function setupHints(crosswordData) {
+      const items = crosswordData.result;
+      const acrossHints = [];
+      const downHints = [];
+      for(item of items) {
+        const {clue, orientation, position} = item;
+        if(orientation === "across"){
+          acrossHints.push({position, clue});
+        } else if (orientation === "down") {
+          downHints.push({position, clue});
+        }
+      }
+      const acrossHintListItems = renderHintListItems(acrossHints);
+      document.getElementById("across-hints").innerHTML = acrossHintListItems.join("");
+      const downHintListItems = renderHintListItems(downHints);
+      document.getElementById("down-hints").innerHTML = downHintListItems.join("");
+
+    }
     function setupBoard(crosswordData){
       const boardData = renderBoard(crosswordData);
       console.log(boardData);
@@ -79,6 +107,7 @@
       document.getElementById("board").style.gridTemplateColumns = `repeat(${crosswordData.cols}, ${globalBoxWidth})`;
       document.getElementById("board").style.gridTemplateRows = `repeat(${crosswordData.rows}, ${globalBoxHeight})`;
       document.getElementById("board").innerHTML = boardData;
+      setupHints(crosswordData);
     }
     setupBoard(crosswordData);
     document.getElementById("create-button").addEventListener("click", function(e) {
