@@ -25,7 +25,7 @@ function crosswordItemsFromCSV(csv) {
  * ?length=2&a0=owl&a1=octopus&c0=night%20bird&c1=sea%20animal
  * 
  */
-function crosswordToQueryString(crosswordItems) {
+function crosswordItemsToQueryString(crosswordItems) {
   const clueParams = [];
   const ansParams = [];
   for(let i=0; i<crosswordItems.length; i++){
@@ -38,4 +38,23 @@ function crosswordToQueryString(crosswordItems) {
   }
 
   return '?' + `length=${crosswordItems.length}` + '&' + clueParams.join('&') + '&' + ansParams.join('&');
+}
+
+function queryStringToCrosswordItems(qs) {
+  const params = new URLSearchParams(qs);
+  const len = parseInt(params.get('length'));
+  const items = [];
+  if(len !== NaN){
+    for(let i=0; i<len; i++) {
+      const clue = params.get(`c${i}`);
+      const answer = params.get(`a${i}`);
+      if(clue === null || answer === null) {
+        throw `invalid query string for clue or answer ${i} in url`;
+      }
+      items.push({clue, answer});
+    }
+  } else {
+    throw "invalid query string for length in url";
+  }
+  return items;
 }
