@@ -3,7 +3,7 @@ function renderLetterBoxInput({correctAns, idx}) {
   // double check sanity
   if(correctAns.length==1 && correctAns.match(/[a-zA-Z]/)){
     const pattern = `[${correctAns.toLowerCase()}${correctAns.toUpperCase()}]`; // accept upper OR lower case ex: [aA], [bB], etc...
-    return `<input type="text" data-idx=${idx} pattern="${pattern}" data-correct-answer="${correctAns}" class="letter-box-input"/>`;
+    return `<input type="text" data-idx=${idx} pattern="${pattern}" data-correct-answer="${correctAns}" class="letter-box-input" maxlength=1/>`;
   } else {
     console.log("error rendering input form with correctAns" + correctAns);
     return `<input type="text" class="letter-box-input letter-box-input-error" />`;
