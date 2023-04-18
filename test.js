@@ -55,3 +55,17 @@ describe('Render Engine', function () {
     })
   });
 });
+
+describe('convert and save', () => {
+  describe('#crosswordToQueryString', () => {
+    it('can convert crossword to query string', () => {
+      const crosswordItems = [
+        {answer: "owl", clue: "night bird"},
+        {answer: "octopus", clue: "sea animal"}
+      ];
+      const qs = crosswordToQueryString(crosswordItems);
+      const expectedQueryString = '?length=2&c0=night%20bird&c1=sea%20animal&a0=owl&a1=octopus';
+      chai.expect(qs).to.equal(expectedQueryString);
+    });
+  });
+})

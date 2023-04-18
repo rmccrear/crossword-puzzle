@@ -15,3 +15,27 @@ function crosswordItemsFromCSV(csv) {
   }
   return items;
 }
+
+/**
+ * 
+ * @param {Array} crosswordItems 
+ * 
+ * This function "saves" the crossword puzzle as a URL
+ * 
+ * ?length=2&a0=owl&a1=octopus&c0=night%20bird&c1=sea%20animal
+ * 
+ */
+function crosswordToQueryString(crosswordItems) {
+  const clueParams = [];
+  const ansParams = [];
+  for(let i=0; i<crosswordItems.length; i++){
+    const clueParamKey = `c${i}`;
+    const ansParamKey = `a${i}`;
+    const clueParamValue = encodeURIComponent(crosswordItems[i].clue);
+    const ansParamValue = encodeURIComponent(crosswordItems[i].answer);
+    clueParams.push(`${clueParamKey}=${clueParamValue}`);
+    ansParams.push(`${ansParamKey}=${ansParamValue}`);
+  }
+
+  return '?' + `length=${crosswordItems.length}` + '&' + clueParams.join('&') + '&' + ansParams.join('&');
+}
