@@ -93,5 +93,13 @@ describe('convert and save', () => {
       const qs = '?length=2&c0=night%20bird&a0=owl&a1=octopus';
       chai.expect(() => queryStringToCrosswordItems(qs)).to.throw();
     })
-  })
+  });
+
+  describe('#checkQueryStringForMissingClue', () => {
+    it('returns the index of the first missing clue', () => {
+      const qs = '?length=2&c0=night%20bird&c1=&a0=owl&a1=octopus';
+      chai.expect(checkQueryStringForMissingClue(qs)).to.equal(1);
+    });
+
+  });
 })

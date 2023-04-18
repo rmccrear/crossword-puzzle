@@ -44,7 +44,6 @@ function queryStringToCrosswordItems(qs) {
   const params = new URLSearchParams(qs);
   const len = parseInt(params.get('length'));
   const items = [];
-  console.log(len)
   if(Number.isNaN(len)){
     throw new Error('invalid query string for length in url');
   } else {
@@ -58,4 +57,26 @@ function queryStringToCrosswordItems(qs) {
     }
   } 
   return items;
+}
+
+function checkQueryStringForMissingClue(qs) {
+  const params = new URLSearchParams(qs);
+  const len = parseInt(params.get('length'));
+
+  if(Number.isNaN(len)){
+    throw new Error('invalid query string for length in url');
+  } else {
+    for(let i=0; i<len; i++) {
+      const clue = params.get(`c${i}`);
+      const answer = params.get(`a${i}`);
+      if(answer === null) {
+        throw new Error(`invalid query string for answer ${i} in url`);
+      }
+      // Check for missing clue here...
+      if(clue === '') {
+        return i;
+      }
+    }
+  } 
+  return null;
 }
