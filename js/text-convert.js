@@ -44,17 +44,18 @@ function queryStringToCrosswordItems(qs) {
   const params = new URLSearchParams(qs);
   const len = parseInt(params.get('length'));
   const items = [];
-  if(len !== NaN){
+  console.log(len)
+  if(Number.isNaN(len)){
+    throw new Error('invalid query string for length in url');
+  } else {
     for(let i=0; i<len; i++) {
       const clue = params.get(`c${i}`);
       const answer = params.get(`a${i}`);
       if(clue === null || answer === null) {
-        throw `invalid query string for clue or answer ${i} in url`;
+        throw new Error(`invalid query string for clue or answer ${i} in url`);
       }
       items.push({clue, answer});
     }
-  } else {
-    throw "invalid query string for length in url";
-  }
+  } 
   return items;
 }

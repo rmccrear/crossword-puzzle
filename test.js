@@ -77,6 +77,21 @@ describe('convert and save', () => {
       chai.expect(crosswordItems[1].answer).to.equal('octopus');
       chai.expect(crosswordItems[0].clue).to.equal('night bird');
       chai.expect(crosswordItems[1].clue).to.equal('sea animal');
+    });
+
+    it('throws on missing length in query string', () => {
+      const qs = '?length=XYZ&c0=night%20bird&c1=sea%20animal&a0=owl&a1=octopus';
+      chai.expect(() => queryStringToCrosswordItems(qs)).to.throw();
+    });
+
+    it('throws on missing answer', () => {
+      const qs = '?length=2&c0=night%20bird&c1=sea%20animal&a0=owl&';
+      chai.expect(() => queryStringToCrosswordItems(qs)).to.throw();
+    })
+
+    it('throws on missing clue', () => {
+      const qs = '?length=2&c0=night%20bird&a0=owl&a1=octopus';
+      chai.expect(() => queryStringToCrosswordItems(qs)).to.throw();
     })
   })
 })
