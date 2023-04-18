@@ -62,6 +62,7 @@ function queryStringToCrosswordItems(qs) {
 function checkQueryStringForMissingClue(qs) {
   const params = new URLSearchParams(qs);
   const len = parseInt(params.get('length'));
+  const completedItems = [];
 
   if(Number.isNaN(len)){
     throw new Error('invalid query string for length in url');
@@ -74,9 +75,19 @@ function checkQueryStringForMissingClue(qs) {
       }
       // Check for missing clue here...
       if(clue === '') {
-        return i;
+        return {
+          nextAnswer: answer,
+          idx: i,
+          isCompleted: false,
+          completedItems 
+        };
+      } else {
+        completedItems.push({answer, clue});
       }
     }
   } 
-  return null;
+  return {
+    isCompleted: true,
+    completedItems
+  };
 }

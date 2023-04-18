@@ -96,9 +96,24 @@ describe('convert and save', () => {
   });
 
   describe('#checkQueryStringForMissingClue', () => {
-    it('returns the index of the first missing clue', () => {
+    it('returns the first missing clue', () => {
       const qs = '?length=2&c0=night%20bird&c1=&a0=owl&a1=octopus';
-      chai.expect(checkQueryStringForMissingClue(qs)).to.equal(1);
+      const result = checkQueryStringForMissingClue(qs);
+      chai.expect(result.isCompleted).to.equal(false);
+      chai.expect(result.nextAnswer).to.equal('octopus');
+      chai.expect(result.idx).to.equal(1);
+    });
+
+    it('determines if the clues have been completed', () => {
+      const qs = '?length=2&c0=night%20bird&c1=sea%20animal&a0=owl&a1=octopus';
+      const result = checkQueryStringForMissingClue(qs);
+      chai.expect(result.isCompleted).to.equal(true);
+      console.log(result)
+      chai.assert(result.completedItems[0].answer === 'owl');
+      chai.assert(result.completedItems[0].clue === 'night bird');
+      chai.assert(result.completedItems[1].answer === 'octopus');
+      chai.assert(result.completedItems[1].clue === 'sea animal');
+
     });
 
   });
