@@ -2,11 +2,6 @@
 const globalBoxWidth = "3em";
 const globalBoxHeight= "3em";
 
-// TODO: replace with input from url string
-// initial data
-const crosswordData = generateLayout([{clue: "a kind of dog", answer:"hound"}, {"clue": "a kind of sea animal", answer: "octopus"}, {clue: "night bird", answer: "owl"}, {clue: "not off", answer: "on"}]);
-console.log(crosswordData);
-
 // This function will populate the hints section of the page
 function setupHints(crosswordData) {
   const items = crosswordData.result;
@@ -38,8 +33,38 @@ function setupBoard(crosswordData){
   document.getElementById("board").innerHTML = boardData;
 }
 
+function generateLinkForCrossword(crosswordData) {
+  const crosswordItems = crosswordData.result;
+  const qs = crosswordItemsToQueryString(crosswordItems);
+  const origin = location.origin;
+  const pathname = location.pathname;
+  const url = origin + pathname + qs;
+  return url;
+}
+
+function checkURLForQueryString() {
+  const qs = location.search;
+  try {
+    const crosswordItems = queryStringToCrosswordItems(qs);
+    return crosswordItems;
+  } catch (e) {
+    console.log('no crossword qs');
+    console.log(e);
+  }
+}
+
 function run(){
   // on init do...
+  let crosswordData;
+  const crosswordFromQueryString = checkURLForQueryString();
+  if(crosswordFromQueryString) {
+    crosswordData = generateLayout(crosswordFromQueryString);
+  } else {
+    // TODO: handle empty data;
+    // initial data
+    crosswordData = generateLayout([{clue: "a kind of dog", answer:"hound"}, {"clue": "a kind of sea animal", answer: "octopus"}, {clue: "night bird", answer: "owl"}, {clue: "not off", answer: "on"}]);
+  }
+
   setupBoard(crosswordData);
   setupHints(crosswordData);
   document.getElementById("create-button").addEventListener("click", function(e) {
@@ -47,9 +72,18 @@ function run(){
     const csv = document.getElementById("create-crossword-textarea").value;
     console.log(csv);
     const crosswordItems = crosswordItemsFromCSV(csv);
-    const crosswordData = generateLayout(crosswordItems);
+    // set global!!
+    crosswordData = generateLayout(crosswordItems);
     setupBoard(crosswordData);
+    setupHints(crosswordData);
   });
+
+  document.getElementById("share-link-button").addEventListener("click", () => {
+    const url = generateLinkForCrossword(crosswordData);
+    navigator.clipboard.writeText(url).then(() => {
+      document.getElementById("share-link-button").textContent = "copied!";
+    });
+  })
 }
 
 run();
