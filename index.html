@@ -6,10 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Name Game</title>
   <link rel="stylesheet" href="./css/style.css">
-  <script>
-    const globalBoxWidth = "3em";
-    const globalBoxHeight= "3em";
-  </script>
 </head>
 <body>
   <header>
@@ -38,49 +34,9 @@
   </div>
   <footer>
   </footer>
-  <script src="./render.js"></script>
-  <script src="./text-convert.js"></script>
+  <script src="./js/render.js"></script>
+  <script src="./js/text-convert.js"></script>
   <script src="./vendor/crossword-layout-generator.js"></script>
-  <script>
-    const crosswordData = generateLayout([{clue: "a kind of dog", answer:"hound"}, {"clue": "a kind of sea animal", answer: "octopus"}, {clue: "night bird", answer: "owl"}, {clue: "not off", answer: "on"}]);
-    console.log(crosswordData);
-    function setupHints(crosswordData) {
-      const items = crosswordData.result;
-      const acrossHints = [];
-      const downHints = [];
-      for(item of items) {
-        const {clue, orientation, position} = item;
-        if(orientation === "across"){
-          acrossHints.push({position, clue});
-        } else if (orientation === "down") {
-          downHints.push({position, clue});
-        }
-      }
-      const acrossHintListItems = renderHintListItems(acrossHints);
-      document.getElementById("across-hints").innerHTML = acrossHintListItems.join("");
-      const downHintListItems = renderHintListItems(downHints);
-      document.getElementById("down-hints").innerHTML = downHintListItems.join("");
-
-    }
-    function setupBoard(crosswordData){
-      const boardData = renderBoard(crosswordData);
-      console.log(boardData);
-      document.getElementById("board").style.backgroundColor = "white";
-      document.getElementById("board").style.width = `calc(${globalBoxWidth}*${crosswordData.cols} + 1em)`
-      document.getElementById("board").style.gridTemplateColumns = `repeat(${crosswordData.cols}, ${globalBoxWidth})`;
-      document.getElementById("board").style.gridTemplateRows = `repeat(${crosswordData.rows}, ${globalBoxHeight})`;
-      document.getElementById("board").innerHTML = boardData;
-      setupHints(crosswordData);
-    }
-    setupBoard(crosswordData);
-    document.getElementById("create-button").addEventListener("click", function(e) {
-      e.preventDefault();
-      const csv = document.getElementById("create-crossword-textarea").value;
-      console.log(csv);
-      const crosswordItems = crosswordItemsFromCSV(csv);
-      const crosswordData = generateLayout(crosswordItems);
-      setupBoard(crosswordData);
-    });
-  </script>
+  <script src="./js/app.js"></script>
 </body>
 </html>
