@@ -7,7 +7,6 @@
   <title>Name Game Intro</title>
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/sharing-page.css">
-  <script src="./js/text-convert.js"></script>
 </head>
 <body>
 
@@ -16,7 +15,7 @@
   </header>
 
   <main>
-    <div class="intro-container">
+    <div id="intro-container" class="hidden">
       <p>Let's play a name game.</p>
       <p>Write something interesting or surprising about yourself and pass it on to the next person on the list.</p>
       <p>The next person is: <span class="current-person"></span></p>
@@ -24,15 +23,16 @@
       <div class="something-interesting-question">
         <label>
           Hi, I'm <span class="current-person"></span>. Something interesting about my self is...
-          <input type="text" placeholder="Something interesting about myself is...">
+          <input id="interesting-input" type="text" placeholder="Something interesting about myself is...">
         </label>
+        <button>Finish</button>
         <p>
           * Note: Please write something you are comfortable sharing with your whole class as a part of a guessing game.
         </p>
       </div>
     </div>
 
-    <div class="share-link-container">
+    <div id="share-link-container" class="hidden">
       <p>Thanks for sharing <span class="current-person"></span>!</p>
       <p>The next person on the list is <span class="next-person"></span></p>
 
@@ -40,5 +40,7 @@
     </div>
   </main>
   
+  <script src="./js/text-convert.js"></script>
+  <script src="./js/name-game.js"></script>
 </body>
 </html>

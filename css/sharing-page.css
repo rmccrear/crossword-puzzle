@@ -1,3 +1,22 @@
 body {
   background-color: paleturquoise;
 }
+
+main {
+  width: 80%;
+  margin: 4em auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.current-person {
+  padding: .2em;
+  border: solid;
+}
+
+#interesting-input {
+  width: 60%;
+  margin: 2em;
+}
