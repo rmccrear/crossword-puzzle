@@ -22,10 +22,6 @@ main {
   margin: auto;
 }
 
-.hidden {
-  display: none;
-}
-
 .current-person, .next-person {
   padding: .2em;
   border: solid;
@@ -36,14 +32,26 @@ main {
   margin: 2em;
 }
 
+.url-display-container {
+  width: 80%;
+}
 .url-display-inner {
   overflow: auto;
   border: solid;
+  white-space: nowrap;
+  padding: 5px;
+}
+.url-display-copy-btn {
+  float: right;
 }
 
 .btn {
   border: solid;
   display: inline-block;
+  margin: 3px 0 3px;
+  padding: .1em;
+  cursor: pointer;
+  
 }
 
 .url-display-container {

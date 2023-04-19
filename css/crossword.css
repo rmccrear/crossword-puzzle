@@ -50,3 +50,7 @@ input:valid {
   list-style: none;
   margin-bottom: .5em;;
 }
+
+p {
+  font-size: large;
+}

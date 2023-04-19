@@ -1,0 +1,16 @@
+textarea {
+  width: 20em;
+  height: 12em;
+}
+
+main {
+  width: 80%;
+  margin: 4em auto;
+  font-size:x-large;
+}
+
+.create-crossword-input-container {
+  width: 80%;
+  margin: 3em auto;
+  text-align: center;
+}

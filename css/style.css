@@ -17,3 +17,11 @@ header h1 {
   width: 90%;
   margin: auto;
 }
+
+.hidden {
+  display: none;
+}
+
+main p {
+  font-size: x-large;
+}

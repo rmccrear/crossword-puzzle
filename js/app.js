@@ -33,15 +33,6 @@ function setupBoard(crosswordData){
   document.getElementById("board").innerHTML = boardData;
 }
 
-function generateLinkForCrossword(crosswordData) {
-  const crosswordItems = crosswordData.result;
-  const qs = crosswordItemsToQueryString(crosswordItems);
-  const origin = location.origin;
-  const pathname = location.pathname;
-  const url = origin + pathname + qs;
-  return url;
-}
-
 function checkURLForQueryString() {
   const qs = location.search;
   try {
@@ -67,23 +58,23 @@ function run(){
 
   setupBoard(crosswordData);
   setupHints(crosswordData);
-  document.getElementById("create-button").addEventListener("click", function(e) {
-    e.preventDefault();
-    const csv = document.getElementById("create-crossword-textarea").value;
-    console.log(csv);
-    const crosswordItems = crosswordItemsFromCSV(csv);
-    // set global!!
-    crosswordData = generateLayout(crosswordItems);
-    setupBoard(crosswordData);
-    setupHints(crosswordData);
-  });
+  // document.getElementById("create-button").addEventListener("click", function(e) {
+  //   e.preventDefault();
+  //   const csv = document.getElementById("create-crossword-textarea").value;
+  //   console.log(csv);
+  //   const crosswordItems = crosswordItemsFromCSV(csv);
+  //   // set global!!
+  //   crosswordData = generateLayout(crosswordItems);
+  //   setupBoard(crosswordData);
+  //   setupHints(crosswordData);
+  // });
 
-  document.getElementById("share-link-button").addEventListener("click", () => {
-    const url = generateLinkForCrossword(crosswordData);
-    navigator.clipboard.writeText(url).then(() => {
-      document.getElementById("share-link-button").textContent = "copied!";
-    });
-  })
+  // document.getElementById("share-link-button").addEventListener("click", () => {
+  //   const url = generateLinkForCrossword(crosswordData);
+  //   navigator.clipboard.writeText(url).then(() => {
+  //     document.getElementById("share-link-button").textContent = "copied!";
+  //   });
+  // })
 }
 
 run();
