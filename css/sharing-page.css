@@ -35,3 +35,17 @@ main {
   width: 60%;
   margin: 2em;
 }
+
+.url-display-inner {
+  overflow: auto;
+  border: solid;
+}
+
+.btn {
+  border: solid;
+  display: inline-block;
+}
+
+.url-display-container {
+  font-size: smaller;
+}

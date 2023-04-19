@@ -150,4 +150,17 @@ document.getElementById("name-game-submit-thing").addEventListener("click", () =
     completeShare();
     gotoPartTwo();
   }
-})
+});
+
+function copyUrlFn(evt) {
+  const target = evt.currentTarget;
+  const textElm = target.querySelector(".url-display");
+  const copyValue = textElm.textContent;
+  navigator.clipboard.writeText(copyValue);
+  const copyButton = target.querySelector(".url-display-copy-btn");
+  copyButton.textContent = "Copied!"
+}
+const urlContainers = document.querySelectorAll(".url-display-container");
+for(let elm of urlContainers) {
+  elm.addEventListener("click", copyUrlFn);
+}
