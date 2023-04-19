@@ -25,7 +25,7 @@
           Hi, I'm <span class="current-person"></span>. Something interesting about my self is...
           <input id="interesting-input" type="text" placeholder="Something interesting about myself is...">
         </label>
-        <button>Finish</button>
+        <button id="name-game-submit-thing">Finish</button>
         <p>
           * Note: Please write something you are comfortable sharing with your whole class as a part of a guessing game.
         </p>
@@ -34,9 +34,13 @@
 
     <div id="share-link-container" class="hidden">
       <p>Thanks for sharing <span class="current-person"></span>!</p>
-      <p>The next person on the list is <span class="next-person"></span></p>
+      <p id="next-person-instructions">The next person on the list is <span class="next-person"></span></p>
+      <p id="last-person-instructions">You are the last person on the list. It's ready to share with everyone!</p>
 
       <p>Please copy the link below, and share it with <span class="next-person"></span>.</p>
+      <div>
+        <div id="url-display"></div>
+      </div>
     </div>
   </main>
   

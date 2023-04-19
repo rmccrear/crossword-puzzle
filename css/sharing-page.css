@@ -11,7 +11,7 @@ main {
   display: none;
 }
 
-.current-person {
+.current-person, .next-person {
   padding: .2em;
   border: solid;
 }

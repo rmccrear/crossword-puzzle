@@ -32,21 +32,6 @@ function setCurrentName(answer) {
   }
 }
 
-// TODO: grab data from Query String
-function analyzeQueryString() {
-  const queryString = location.search;
-  const result = checkQueryStringForMissingClue(queryString);
-  if(result.isCompleted) {
-    // display link to crossword puzzle
-  } else {
-    // continue with name game
-    removeClass('#intro-container', 'hidden')
-    setCurrentName(result.nextAnswer);
-  }
-
-}
-
-analyzeQueryString();
 
 // TODO: find next name
 
@@ -57,3 +42,77 @@ analyzeQueryString();
 // TODO: get name game answer, hide first step
 
 // TODO: Populate share URL, show second step.
+function completeShare() {
+  const queryString = nameGameBuilder.toQueryString();
+  const urlDisplay = document.getElementById('url-display');
+
+  const nextNameGameBuilder = new NameGameBuilder(queryString);
+  nextNameGameBuilder.analyzeQueryString(queryString);
+  if(nextNameGameBuilder.isCompleted) {
+    addClass("#next-person-instructions", "hidden");
+    const nextPersonSpans = document.querySelectorAll(".next-person");
+    for(let next of nextPersonSpans) {
+      next.textContent = "Everyone"
+    }
+    const url = `${location.origin}${queryString}`;
+    urlDisplay.textContent = url;
+  } else {
+    const nextAnswer = nextNameGameBuilder.nextAnswer;
+    addClass("#last-person-instructions", "hidden");
+    const nextPersonSpans = document.querySelectorAll(".next-person");
+    for(let next of nextPersonSpans) {
+      next.textContent = nextAnswer;
+    }
+    const url = `${location.origin}/name-game.html${queryString}`;
+    urlDisplay.textContent = url;
+  }
+}
+
+function gotoPartTwo() {
+  const introContainer = document.getElementById("intro-container");
+  const shareLinkContainer = document.getElementById("share-link-container");
+  addClass("#intro-container", "hidden");
+  removeClass("#share-link-container", "hidden");
+}
+
+
+class NameGameBuilder {
+  // grab data from Query String
+  analyzeQueryString(queryString) {
+    const result = checkQueryStringForMissingClue(queryString);
+    this.completedItems = result.completedItems;
+    this.items = result.items;
+    this.nextIdx = result.idx;
+    this.isCompleted = result.isCompleted;
+    this.nextAnswer = result.nextAnswer;
+  }
+
+  setNextInterestingThing(thing) {
+    this.items[this.nextIdx].clue = thing;
+  }
+
+  toQueryString() {
+    return crosswordItemsToQueryString(this.items);
+  }
+}
+
+const nameGameBuilder = new NameGameBuilder();
+const queryString = location.search;
+nameGameBuilder.analyzeQueryString(queryString);
+if(nameGameBuilder.isCompleted) {
+  // display link to crossword puzzle
+} else {
+  // continue with name game
+  removeClass('#intro-container', 'hidden')
+  setCurrentName(nameGameBuilder.nextAnswer);
+}
+
+
+document.getElementById("name-game-submit-thing").addEventListener("click", () => {
+  const input = document.getElementById("interesting-input");
+  const interestingThing = input.value;
+  nameGameBuilder.setNextInterestingThing(interestingThing);
+  console.log(nameGameBuilder.items)
+  completeShare();
+  gotoPartTwo();
+})

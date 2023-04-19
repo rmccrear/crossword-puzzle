@@ -31,7 +31,7 @@ function crosswordItemsToQueryString(crosswordItems) {
   for(let i=0; i<crosswordItems.length; i++){
     const clueParamKey = `c${i}`;
     const ansParamKey = `a${i}`;
-    const clueParamValue = encodeURIComponent(crosswordItems[i].clue);
+    const clueParamValue = encodeURIComponent(crosswordItems[i].clue || ''); // handle case of incomplete game
     const ansParamValue = encodeURIComponent(crosswordItems[i].answer);
     clueParams.push(`${clueParamKey}=${clueParamValue}`);
     ansParams.push(`${ansParamKey}=${ansParamValue}`);
@@ -63,6 +63,11 @@ function checkQueryStringForMissingClue(qs) {
   const params = new URLSearchParams(qs);
   const len = parseInt(params.get('length'));
   const completedItems = [];
+  const items = []
+  let isCompleted = true;
+  let nextAnswer = null;
+  let idx = null;
+
 
   if(Number.isNaN(len)){
     throw new Error('invalid query string for length in url');
@@ -74,20 +79,27 @@ function checkQueryStringForMissingClue(qs) {
         throw new Error(`invalid query string for answer ${i} in url`);
       }
       // Check for missing clue here...
-      if(clue === '') {
-        return {
-          nextAnswer: answer,
-          idx: i,
-          isCompleted: false,
-          completedItems 
-        };
+      if(clue === '' && idx === null) {
+        // indicate next one to complete
+        nextAnswer = answer;
+        idx = i;
+        isCompleted = false;
+        // add item without clue
+        items.push({answer, clue: ''});
+      } else if (clue === '' &&  idx !== null) {
+        // add other items without clue
+        items.push({answer, clue: ''});
       } else {
         completedItems.push({answer, clue});
+        items.push({answer, clue});
       }
     }
   } 
   return {
-    isCompleted: true,
-    completedItems
+    isCompleted,
+    completedItems, // only completed items
+    items, // all items, included incomplete
+    idx,
+    nextAnswer
   };
 }
