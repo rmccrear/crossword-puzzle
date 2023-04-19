@@ -42,9 +42,32 @@ function setCurrentName(answer) {
 // TODO: get name game answer, hide first step
 
 // TODO: Populate share URL, show second step.
+function builderURL(queryString) {
+  return `${location.origin}/name-game.html${queryString}`;
+}
+
+function completedGameURL(queryString) {
+  return `${location.origin}${queryString}`;
+}
+
+function applyBuilderURL(queryString) {
+  const elms = document.querySelectorAll('.url-display');
+  const url = builderURL(queryString);
+  for(let elm of elms) {
+    elm.textContent = url;
+  }
+}
+
+function applyCompletedGameURL(queryString) {
+  const elms = document.querySelectorAll('.url-display');
+  const url = completedGameURL(queryString);
+  for(let elm of elms) {
+    elm.textContent = url;
+  }
+}
+
 function completeShare() {
   const queryString = nameGameBuilder.toQueryString();
-  const urlDisplay = document.getElementById('url-display');
 
   const nextNameGameBuilder = new NameGameBuilder(queryString);
   nextNameGameBuilder.analyzeQueryString(queryString);
@@ -54,8 +77,7 @@ function completeShare() {
     for(let next of nextPersonSpans) {
       next.textContent = "Everyone"
     }
-    const url = `${location.origin}${queryString}`;
-    urlDisplay.textContent = url;
+    applyCompletedGameURL(queryString);
   } else {
     const nextAnswer = nextNameGameBuilder.nextAnswer;
     addClass("#last-person-instructions", "hidden");
@@ -63,8 +85,7 @@ function completeShare() {
     for(let next of nextPersonSpans) {
       next.textContent = nextAnswer;
     }
-    const url = `${location.origin}/name-game.html${queryString}`;
-    urlDisplay.textContent = url;
+    applyBuilderURL(queryString);
   }
 }
 
@@ -106,6 +127,18 @@ if(nameGameBuilder.isCompleted) {
   removeClass('#intro-container', 'hidden')
   setCurrentName(nameGameBuilder.nextAnswer);
 }
+
+document.getElementById("yes-identity").addEventListener("click", () => {
+  addClass("#identify-player-container", "hidden");
+  removeClass("#question-container", "hidden");
+});
+
+document.getElementById("no-identity").addEventListener("click", () => {
+  addClass("#identify-player-container", "hidden");
+  removeClass("#wrong-person-container", "hidden");
+  const queryString = nameGameBuilder.toQueryString();
+  applyBuilderURL(queryString);
+});
 
 
 document.getElementById("name-game-submit-thing").addEventListener("click", () => {

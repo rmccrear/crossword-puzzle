@@ -1,10 +1,25 @@
 body {
-  background-color: paleturquoise;
 }
 
 main {
   width: 80%;
   margin: 4em auto;
+  font-size:x-large;
+}
+
+#intro-container {
+  width: 80%;
+}
+
+#identify-player-container {
+  width: 80%;
+  margin: 4em auto;
+  text-align: center;
+}
+
+#intro-container .form-container {
+  width: 80%;
+  margin: auto;
 }
 
 .hidden {
