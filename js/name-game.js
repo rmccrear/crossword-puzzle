@@ -144,8 +144,10 @@ document.getElementById("no-identity").addEventListener("click", () => {
 document.getElementById("name-game-submit-thing").addEventListener("click", () => {
   const input = document.getElementById("interesting-input");
   const interestingThing = input.value;
-  nameGameBuilder.setNextInterestingThing(interestingThing);
-  console.log(nameGameBuilder.items)
-  completeShare();
-  gotoPartTwo();
+  if(interestingThing.length>0){
+    nameGameBuilder.setNextInterestingThing(interestingThing);
+    console.log(nameGameBuilder.items)
+    completeShare();
+    gotoPartTwo();
+  }
 })
