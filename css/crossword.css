@@ -45,7 +45,6 @@ input:valid {
 #sidebar {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   justify-content: flex-start;
   padding: 2em;
   border: solid;

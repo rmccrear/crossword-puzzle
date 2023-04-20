@@ -58,23 +58,6 @@ function run(){
 
   setupBoard(crosswordData);
   setupHints(crosswordData);
-  // document.getElementById("create-button").addEventListener("click", function(e) {
-  //   e.preventDefault();
-  //   const csv = document.getElementById("create-crossword-textarea").value;
-  //   console.log(csv);
-  //   const crosswordItems = crosswordItemsFromCSV(csv);
-  //   // set global!!
-  //   crosswordData = generateLayout(crosswordItems);
-  //   setupBoard(crosswordData);
-  //   setupHints(crosswordData);
-  // });
-
-  // document.getElementById("share-link-button").addEventListener("click", () => {
-  //   const url = generateLinkForCrossword(crosswordData);
-  //   navigator.clipboard.writeText(url).then(() => {
-  //     document.getElementById("share-link-button").textContent = "copied!";
-  //   });
-  // })
 }
 
 run();
