@@ -29,7 +29,7 @@ function builderURL(queryString) {
 
 function completedGameURL(queryString) {
   const rootURL = getRootURL();
-  return `${rootURL}${queryString}`;
+  return `${rootURL}/play.html${queryString}`;
 }
 
 function applyBuilderURL(queryString) {

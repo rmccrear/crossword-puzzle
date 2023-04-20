@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name Game</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/crossword.css">
+</head>
+<body>
+  <header>
+    <h1>Crossword Puzzle Name Game</h1>
+  </header>
+  <div class="container">
+    <div id="instructions">
+      <p>
+        This is a name game. If all went well, each of the answers in the crossword puzzle will be the name of a student in your class. The hints where supplied by you as we passed the link around. See if you can remember them all!
+      </p>
+    </div>
+    <div id="game-layout">
+      <div id="board"></div>
+      <div id="sidebar">
+        <div>
+          <h3>Across</h3>
+          <ul id="across-hints"></ul>
+        </div>
+        <div>
+          <h3>Down</h3>
+          <ul id="down-hints"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+  </footer>
+  <script src="./js/render.js"></script>
+  <script src="./js/text-convert.js"></script>
+  <script src="./vendor/crossword-layout-generator.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
