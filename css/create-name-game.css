@@ -14,3 +14,23 @@ main {
   margin: 3em auto;
   text-align: center;
 }
+
+button {
+  border: solid;
+  display: inline-block;
+  margin: 3px 0 30px;
+  padding: .1em;
+  font-size: x-large;
+  cursor: pointer;
+  border-radius: .5em;
+  background-color: aliceblue;
+}
+
+textarea {
+  width: 80%;
+  height: auto;
+  padding: 30px;
+  border-radius: .5em;
+  border: solid;
+  background-color: aliceblue;
+}

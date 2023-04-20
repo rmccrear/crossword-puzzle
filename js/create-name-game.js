@@ -25,4 +25,5 @@ document.getElementById("create-button").addEventListener("click", function(e) {
   const link = document.getElementById("created-game-link");
   link.href = url;
   link.textContent = url;
+  document.querySelector(".after-create-instructions").scrollIntoView();
 });

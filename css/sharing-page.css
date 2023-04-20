@@ -1,6 +1,3 @@
-body {
-}
-
 main {
   width: 80%;
   margin: 4em auto;
@@ -38,12 +35,14 @@ main {
   width: 80%;
   margin: auto;
 }
+
 .url-display-inner {
   overflow: auto;
   border: solid;
   white-space: nowrap;
   padding: 5px;
 }
+
 .url-display-copy-btn {
   background-color: aliceblue;
   float: right;
