@@ -21,6 +21,7 @@ main {
 #intro-container .form-container {
   width: 80%;
   margin: auto;
+  line-height: 1.5em;
 }
 
 .current-person, .next-person {
@@ -35,6 +36,7 @@ main {
 
 .url-display-container {
   width: 80%;
+  margin: auto;
 }
 .url-display-inner {
   overflow: auto;
@@ -43,6 +45,7 @@ main {
   padding: 5px;
 }
 .url-display-copy-btn {
+  background-color: aliceblue;
   float: right;
 }
 
@@ -52,9 +55,53 @@ main {
   margin: 3px 0 3px;
   padding: .1em;
   cursor: pointer;
-  
+}
+
+.identity-button {
+  border: solid;
+  display: inline-block;
+  margin: 3px 0 3px;
+  padding: .1em;
+  font-size: x-large;
+  cursor: pointer;
+  border-radius: .5em;
+}
+
+#yes-identity {
+  background-color: aliceblue;
+}
+
+#no-identity {
+  background-color: #FFF0F8;
+}
+
+button#name-game-submit-thing {
+  border: solid;
+  display: inline-block;
+  margin: 3px 0 3px;
+  padding: .1em;
+  font-size: x-large;
+  cursor: pointer;
+  border-radius: .5em;
+}
+
+input#interesting-input {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: solid;
+}
+
+.text-input-with-button {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
 
 .url-display-container {
   font-size: smaller;
+}
+
+#share-link-container {
+  text-align: center;
+  line-height: 1.5em;
 }
