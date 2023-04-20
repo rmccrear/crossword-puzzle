@@ -1,5 +1,6 @@
 #board {
   display: grid;
+  flex: 1;
 }
 .letter-box {
   width: 3em; 
@@ -8,6 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden; /* Might overflow if the number is two digits long */
 }
 .letter-box-empty {
   background-color: black;
@@ -35,6 +37,7 @@ input:valid {
 }
 #game-layout {
   display: flex;
+  flex-wrap: wrap;
 }
 #sidebar {
   display: flex;
@@ -42,6 +45,7 @@ input:valid {
   justify-content: space-between;
   padding: 2em;
   border: solid;
+  flex: 1;
 }
 #sidebar div:first-child {
   border-bottom: solid;
@@ -53,4 +57,13 @@ input:valid {
 
 p {
   font-size: large;
+}
+
+#instructions {
+  width: 100%;
+}
+
+#instructions p {
+  max-width: 400px;
+  margin: 50px;
 }
