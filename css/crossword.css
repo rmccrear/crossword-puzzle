@@ -1,6 +1,7 @@
 #board {
   display: grid;
-  flex: 1;
+  flex-shrink: 1;
+  margin: 1em;
 }
 .letter-box {
   width: 3em; 
@@ -38,18 +39,22 @@ input:valid {
 #game-layout {
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
 }
+
 #sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 2em;
   border: solid;
-  flex: 1;
+  margin: 1em;
 }
+
 #sidebar div:first-child {
   border-bottom: solid;
 }
+
 #sidebar li {
   list-style: none;
   margin-bottom: .5em;;
@@ -59,11 +64,9 @@ p {
   font-size: large;
 }
 
-#instructions {
-  width: 100%;
-}
-
 #instructions p {
   max-width: 400px;
-  margin: 50px;
+  margin-left: 1em;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
