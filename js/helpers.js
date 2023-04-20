@@ -19,3 +19,15 @@ function addClass(selector, className) {
     elm.classList.add(className);
   }
 }
+
+function removeLastFromPath(pathname) {
+  const p = pathname.split("/");
+  p.pop();
+  return p.join("/");
+}
+
+function getRootURL() {
+  const { pathname, origin } = location;
+  const rootPath = removeLastFromPath(pathname);
+  return origin + rootPath;
+}

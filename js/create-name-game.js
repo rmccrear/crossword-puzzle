@@ -3,10 +3,9 @@
 function generateLinkForCrossword(crosswordData) {
   const crosswordItems = crosswordData.result;
   const qs = crosswordItemsToQueryString(crosswordItems);
-  const origin = location.origin;
-  // const pathname = location.pathname;
+  const rootURL = getRootURL();
   const pathname = "/name-game.html";
-  const url = origin + pathname + qs;
+  const url = rootURL + pathname + qs;
   return url;
 }
 

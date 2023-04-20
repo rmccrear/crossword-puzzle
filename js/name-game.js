@@ -23,11 +23,13 @@ function setCurrentName(answer) {
 
 // TODO: Populate share URL, show second step.
 function builderURL(queryString) {
-  return `${location.origin}/name-game.html${queryString}`;
+  const rootURL = getRootURL();
+  return `${rootURL}/name-game.html${queryString}`;
 }
 
 function completedGameURL(queryString) {
-  return `${location.origin}${queryString}`;
+  const rootURL = getRootURL();
+  return `${rootURL}${queryString}`;
 }
 
 function applyBuilderURL(queryString) {
