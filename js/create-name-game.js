@@ -1,10 +1,25 @@
 'use strict';
 
+function checkForCompletedPuzzle(crosswordData) {
+  let isIncomplete = false;
+  for(const item of crosswordData.result) {
+    if(!item.clue) {
+      isIncomplete = true;
+    }
+  }
+  return !isIncomplete;
+}
+
 function generateLinkForCrossword(crosswordData) {
   const crosswordItems = crosswordData.result;
   const qs = crosswordItemsToQueryString(crosswordItems);
   const rootURL = getRootURL();
-  const pathname = "/name-game.html";
+  let pathname;
+  if(checkForCompletedPuzzle(crosswordData)){
+    pathname = "/play.html"
+  } else {
+    pathname = "/name-game.html";
+  }
   const url = rootURL + pathname + qs;
   return url;
 }
