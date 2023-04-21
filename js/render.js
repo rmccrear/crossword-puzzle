@@ -60,7 +60,8 @@ function generateHashTableForStartPositions(crosswordResult) {
 
 function renderHintListItems(hints) {
   const elms = [];
-  for(hint of hints) {
+  const sorted = hints.toSorted((a,b) => a.position-b.position);
+  for(hint of sorted) {
     elms.push(`<li>${hint.position}. ${hint.clue}</li>`)
   }
   return elms;
