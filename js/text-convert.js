@@ -1,15 +1,28 @@
 
+function trimLines(str) {
+  const lines = str.split("\n");
+  const clean = [];
+  for(line of lines) {
+    const trimmed = line.trim();
+    if(trimmed) {
+      clean.push(trimmed);
+    }
+  }
+  return clean.join("\n");
+}
+
 /**
   * csv: string - answer, hint\n
 */
 function crosswordItemsFromCSV(csv) {
+  csv = trimLines(csv);
   const lines = csv.split("\n");
   const items = [];
-  for(line of lines){
+  for(const line of lines){
     const data = line.split(",")
     const item = {
       clue: data[1],
-      answer: data[0]
+      answer: data[0].trim()
     }
     items.push(item);
   }
