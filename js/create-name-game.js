@@ -16,7 +16,6 @@ let crosswordData;
 document.getElementById("create-button").addEventListener("click", function(e) {
   e.preventDefault();
   const csv = document.getElementById("create-crossword-textarea").value;
-  console.log(csv);
   const crosswordItems = crosswordItemsFromCSV(csv);
   // set global!!
   crosswordData = generateLayout(crosswordItems);

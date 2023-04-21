@@ -25,7 +25,6 @@ function setupHints(crosswordData) {
 // This function will populate the board section of the page.
 function setupBoard(crosswordData){
   const boardData = renderBoard(crosswordData);
-  console.log(boardData);
   document.getElementById("board").style.backgroundColor = "white";
   document.getElementById("board").style.width = `calc(${globalBoxWidth}*${crosswordData.cols} + 1em)`
   document.getElementById("board").style.gridTemplateColumns = `repeat(${crosswordData.cols}, ${globalBoxWidth})`;
